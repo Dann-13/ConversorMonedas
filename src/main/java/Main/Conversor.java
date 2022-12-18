@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
 
-package com.mycompany.conversor;
+package Main;
+
+import Contenedores.Menu;
 
 /**
  *
@@ -12,6 +14,7 @@ package com.mycompany.conversor;
 public class Conversor {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Menu menu = new Menu();
+        menu.setVisible(true);
     }
 }
