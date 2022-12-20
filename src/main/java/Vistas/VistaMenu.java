@@ -4,8 +4,15 @@
  */
 package Vistas;
 
+import Contenedores.ConversionMonedas;
 import Contenedores.Menu;
+import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,18 +35,23 @@ public class VistaMenu extends JPanel {
         this.menu = menu;
         this.inicializador();
         this.inicializadorObjetos();
+        this.inicializadorEventos();
     }
-    public void inicializador(){
+    private void inicializador(){
         this.setLayout(null);
     }
-    public void inicializadorObjetos(){
+    private void inicializadorObjetos(){
         //Botones
         btnMonedas = new JButton("Conversor de Monedas");
         btnMonedas.setBounds(90, 200, 200, 30);
+        btnMonedas.setBackground(new Color(152, 65, 235));
+        btnMonedas.setForeground(Color.white);
         this.add(btnMonedas);
         
         btnTemperatura = new JButton("Conversor de Temperatura");
         btnTemperatura.setBounds(90, 250, 200, 30);
+        btnTemperatura.setBackground(new Color(152, 65, 235));
+        btnTemperatura.setForeground(Color.white);
         this.add(btnTemperatura);
         
         //importamos imagen
@@ -51,4 +63,30 @@ public class VistaMenu extends JPanel {
         labelImagen.setBounds(140, 30, 100, 100);
         this.add(labelImagen);
     }
+    //inicializador de los eventos del boton
+    private void inicializadorEventos(){
+        ActionListener escuchaBtnMonedas = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    escuchaBtnMonedasClick();
+                } catch (IOException ex) {
+                    Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        };
+        btnMonedas.addActionListener(escuchaBtnMonedas);
+       
+    }
+    
+    
+    //llamada a las ventanas
+    public void escuchaBtnMonedasClick() throws IOException {
+
+        ConversionMonedas conver = new ConversionMonedas();
+        conver.setVisible(true);
+        this.menu.dispose();
+
+    }
+    
 }
