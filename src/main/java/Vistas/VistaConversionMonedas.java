@@ -4,20 +4,12 @@
  */
 package Vistas;
 
-import Clases.ConvercionMoneda;
-import Clases.Moneda;
-import Clases.TipoCambio;
-import Contenedores.ConversionMonedas;
+
+import PanelesConversion.PesostoYen;
+import PanelesConversion.PesotoEuro;
+import PanelesConversion.PesotoUsd;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.CardLayout;
 
 import javax.swing.JComboBox;
 import javax.swing.*;
@@ -28,98 +20,48 @@ import javax.swing.*;
  */
 public class VistaConversionMonedas extends JPanel {
 
-    JLabel LblConvertir, LblNumero;
-    JTextField caja;
-    JButton btnEnviar;
+    PesotoUsd pesostoUsd;
+    PesotoEuro pesotoEuro;
+    PesostoYen pesotoYen;
+    
+    JPanel container;
+    JComboBox<String> comboBox;
 
-    Moneda usd = new Moneda("Dólar estadounidense", "$", "USD");
-    Moneda eur = new Moneda("Euro", "€", "EUR");
-    Moneda jpy = new Moneda("Yen japonés", "¥", "JPY");
-    Moneda peso = new Moneda("Peso Colombiano", "$", "Cop");
-
+    //componentes de los paneles
     public VistaConversionMonedas() {
         this.inicializador();
         this.inicializadorObjetos();
-        this.inicializadorEventos();
     }
 
     private void inicializador() {
-        this.setLayout(null);
+        this.setLayout(new BorderLayout());
     }
 
     private void inicializadorObjetos() {
 
-        JComboBox<String> comboBox = new JComboBox<>();
-        comboBox.addItem("Peso a Usd");
+        comboBox = new JComboBox<>(new String[]{"Peso a Euro", "Peso a Yen", "Pesos a Usd"});
+        this.add(comboBox, BorderLayout.NORTH);
 
-        comboBox.addItem("Opción 2");
-        comboBox.addItem("Opción 3");
-        comboBox.setSize(250, 30);
-        comboBox.setLocation(15, 30);
-        comboBox.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String selectedOption = (String) comboBox.getSelectedItem();
-                if (selectedOption.equals("Peso a Usd")) {
+        // crear el contenedor que utilizará un CardLayout
+        container = new JPanel(new CardLayout());
 
-                    TipoCambio pesoToUsd = new TipoCambio(peso, usd, 0.00021);
-                    List<TipoCambio> exchangeRates = Arrays.asList(pesoToUsd);
-                    ConvercionMoneda converter = new ConvercionMoneda(exchangeRates);
+        //Paneles
 
-                    //
-                    double amount = 100;
-                    double convertedAmount = converter.convert(amount, peso, usd);
-                    System.out.printf("%.2f %s es igual a %.2f %s\n", amount, usd.getSymbol(), convertedAmount, eur.getSymbol());
-                }
+        pesotoEuro = new PesotoEuro();
+        container.add(pesotoEuro, "Peso a Euro");
 
-            }
-        });
-        this.add(comboBox);
+        pesotoYen = new PesostoYen();
+        container.add(pesotoYen,"Peso a Yen");
 
-        //Label
-        LblNumero = new JLabel();
-        LblNumero.setBounds(85, 70, 100, 20);
-        LblNumero.setText("Ingrese Cantidad");
-        this.add(LblNumero);
+        pesostoUsd = new PesotoUsd();
+        container.add(pesostoUsd, "Pesos a Usd");
 
-        LblConvertir = new JLabel();
-        LblConvertir.setBounds(85, 10, 150, 20);
-        LblConvertir.setText("Seleccione Importe");
-        this.add(LblConvertir);
-        //JTextField "Caja"
-        caja = new JTextField();
-        caja.setLocation(100, 100);
-        caja.setSize(100, 30);
-        this.add(caja);
+        // agregar el contenedor a la interfaz de usuario
+        this.add(container, BorderLayout.CENTER);
 
-        btnEnviar = new JButton();
-        btnEnviar.setText("Convertir");
-        btnEnviar.setBackground(new Color(152, 65, 235));
-        btnEnviar.setForeground(Color.white);
-        btnEnviar.setBounds(100, 150, 80, 30);
-        this.add(btnEnviar);
+        // crear una instancia de PanelChanger y asignarla como listener de eventos de acción de la lista desplegable
+        PanelChanger panelChanger = new PanelChanger(container, comboBox);
+        comboBox.addActionListener(panelChanger);
 
     }
-
-    private void inicializadorEventos() {
-        //Boton enviar convertir
-        ActionListener escuchaBotonConvertir = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    escuchaBtnConvertir();
-                } catch (IOException ex) {
-                    Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        };
-        btnEnviar.addActionListener(escuchaBotonConvertir);
-    }
-
-    public void escuchaBtnConvertir() throws IOException {
-
-        Resultado res = new Resultado();
-        res.setVisible(true);
-
-    }
-
 }
