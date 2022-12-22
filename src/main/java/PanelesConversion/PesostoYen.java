@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -23,21 +24,24 @@ import javax.swing.JTextField;
  * @author Daniel
  */
 public class PesostoYen extends JPanel {
+
     Moneda yen = new Moneda("Yen", "¥", "EUR");
     Moneda peso = new Moneda("Peso Colombiano", "$", "Cop");
     JLabel labelTitulo, lblRes;
     JTextField txtNumero;
     JButton btnEnviar;
-    
-    public PesostoYen(){
+
+    public PesostoYen() {
         this.inicializador();
         this.inicializadorObjetos();
         this.inicializadorEventos();
     }
-    private void inicializador(){
+
+    private void inicializador() {
         this.setLayout(null);
     }
-    private void inicializadorObjetos(){
+
+    private void inicializadorObjetos() {
         labelTitulo = new JLabel();
         labelTitulo.setText("Conversion de Pesos A Yenes");
         labelTitulo.setBounds(115, 20, 200, 30);
@@ -54,13 +58,14 @@ public class PesostoYen extends JPanel {
         btnEnviar.setBackground(new Color(152, 65, 235));
         btnEnviar.setForeground(Color.white);
         this.add(btnEnviar);
-        
+
         lblRes = new JLabel();
         lblRes.setBounds(50, 160, 400, 30);
         lblRes.setText("Resultado");
         this.add(lblRes);
     }
-    private void inicializadorEventos(){
+
+    private void inicializadorEventos() {
         ActionListener escuchaBtnEnviar = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,22 +75,28 @@ public class PesostoYen extends JPanel {
         };
         btnEnviar.addActionListener(escuchaBtnEnviar);
     }
+
     private void escuchaBtnEnviarClick() {
-        TipoCambio pesoToUsd = new TipoCambio(peso, yen, 0.027672186);
+        String validation = txtNumero.getText();
+        if (validation.matches("[0-9]*")) {
+            TipoCambio pesoToUsd = new TipoCambio(peso, yen, 0.027672186);
 
-        // Crear una lista de tasas de cambio
-        List<TipoCambio> exchangeRates = Arrays.asList(pesoToUsd);
+            // Crear una lista de tasas de cambio
+            List<TipoCambio> exchangeRates = Arrays.asList(pesoToUsd);
 
-        // Crear un objeto CurrencyConverter con las tasas de cambio
-        ConvercionMoneda converter = new ConvercionMoneda(exchangeRates);
+            // Crear un objeto CurrencyConverter con las tasas de cambio
+            ConvercionMoneda converter = new ConvercionMoneda(exchangeRates);
 
-        // Realizar una conversión de moneda
-        double amount = Double.parseDouble(txtNumero.getText());
-        double convertedAmount = converter.convert(amount, peso, yen);
-        System.out.printf("%.2f %s es igual a %.2f %s\n", amount, peso.getSymbol(), convertedAmount, yen.getSymbol());
-        
-        lblRes.setText("La cantidad " + amount + peso.getSymbol() +"es igual en yenes a " + convertedAmount + yen.getSymbol());
-        
-        
+            // Realizar una conversión de moneda
+            double amount = Double.parseDouble(txtNumero.getText());
+            double convertedAmount = converter.convert(amount, peso, yen);
+            System.out.printf("%.2f %s es igual a %.2f %s\n", amount, peso.getSymbol(), convertedAmount, yen.getSymbol());
+
+            lblRes.setText("La cantidad " + amount + peso.getSymbol() + "es igual en yenes a " + convertedAmount + yen.getSymbol());
+        } else {
+            JOptionPane.showMessageDialog(null, "Solo Numeros", "Error", JOptionPane.WARNING_MESSAGE);
+
+        }
+
     }
 }
