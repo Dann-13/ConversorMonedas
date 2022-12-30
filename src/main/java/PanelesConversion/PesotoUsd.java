@@ -8,11 +8,14 @@ import Clases.ConvercionMoneda;
 import Clases.Moneda;
 import Clases.TipoCambio;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,7 +30,7 @@ public class PesotoUsd extends JPanel {
 
     Moneda usd = new Moneda("Usd", "$", "USD");
     Moneda peso = new Moneda("Peso Colombiano", "$", "COP");
-    JLabel labelTitulo, lblRes;
+    JLabel labelTitulo, lblRes,labelImagen;
     JTextField txtNumero;
     JButton btnEnviar;
 
@@ -45,25 +48,35 @@ public class PesotoUsd extends JPanel {
 
         labelTitulo = new JLabel();
         labelTitulo.setText("Conversion de Pesos A Dolares");
-        labelTitulo.setBounds(115, 20, 200, 30);
+        labelTitulo.setBounds(60, 20, 350, 30);
+        labelTitulo.setFont(new Font("Arial", Font.PLAIN, 20));
         this.add(labelTitulo);
 
         txtNumero = new JTextField();
-        txtNumero.setSize(100, 30);
-        txtNumero.setLocation(140, 70);
+        txtNumero.setSize(100, 25);
+        txtNumero.setLocation(80, 70);
         this.add(txtNumero);
 
         btnEnviar = new JButton();
         btnEnviar.setText("Convertir");
-        btnEnviar.setBounds(140, 120, 100, 30);
+        btnEnviar.setBounds(210, 70, 100, 25);
         btnEnviar.setBackground(new Color(152, 65, 235));
         btnEnviar.setForeground(Color.white);
         this.add(btnEnviar);
 
         lblRes = new JLabel();
-        lblRes.setBounds(50, 160, 400, 30);
+        lblRes.setBounds(50, 130, 400, 30);
         lblRes.setText("Resultado");
         this.add(lblRes);
+        
+        //importamos imagen
+        ImageIcon icon = new ImageIcon("./src/main/java/source/pesousa.png");
+        //Ajustamos el tamaño del la imagen al label
+        icon.setImage(icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+        labelImagen = new JLabel();
+        labelImagen.setIcon(icon);
+        labelImagen.setBounds(140, 210, 100, 100);
+        this.add(labelImagen);
 
     }
 
@@ -80,8 +93,8 @@ public class PesotoUsd extends JPanel {
 
     private void escuchaBtnEnviarClick() {
         String validation = txtNumero.getText();
-        if (validation.matches("[0-9]*")) {
-            TipoCambio pesoToUsd = new TipoCambio(peso, usd, 0.00020979187);
+        if (validation.matches("[0-9]*")  && validation.length() > 0) {
+            TipoCambio pesoToUsd = new TipoCambio(peso, usd, 0.000209);
 
             // Crear una lista de tasas de cambio
             List<TipoCambio> exchangeRates = Arrays.asList(pesoToUsd);
@@ -94,9 +107,10 @@ public class PesotoUsd extends JPanel {
             double convertedAmount = converter.convert(amount, peso, usd);
             System.out.printf("%.2f %s es igual a %.2f %s\n", amount, peso.getSymbol(), convertedAmount, usd.getSymbol());
 
-            lblRes.setText("La cantidad " + amount + peso.getSymbol() + "es igual en Dolares a " + convertedAmount + usd.getSymbol());
+            lblRes.setText(String.format("<html> La cantidad " + amount + peso.getSymbol() + "<br>es igual en Dolares a " + convertedAmount + usd.getSymbol()+"</html>"));
+            //lblRes.setText(String.format("<html>Line 1<br>Line 2</html>"));
         } else {
-            JOptionPane.showMessageDialog(null, "Solo Numeros", "Erro", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Solo Numeros", "Error", JOptionPane.WARNING_MESSAGE);
 
         }
 

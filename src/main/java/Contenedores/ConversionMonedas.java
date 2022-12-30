@@ -5,15 +5,9 @@
 package Contenedores;
 
 import Vistas.VistaConversionMonedas;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
@@ -34,6 +28,8 @@ public class ConversionMonedas extends JFrame {
         this.setTitle("Conversion de Monedas");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
+
     }
 
     private void inicializadorObjetos() {
