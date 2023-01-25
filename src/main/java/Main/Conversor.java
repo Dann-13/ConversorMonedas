@@ -13,7 +13,11 @@ import Contenedores.Menu;
 public class Conversor {
 
     public static void main(String[] args) {
-        Menu menu = new Menu();
+        try{
+            Menu menu = new Menu();
         menu.setVisible(true);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }
