@@ -19,53 +19,60 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 /**
  *
  * @author Daniel
  */
 public class VistaMenu extends JPanel {
+
     //llamamos a menu frame
     Menu menu;
     //propiedades vistas
-    JLabel LblUsuario,labelImagen;
+    JLabel LblUsuario, labelImagen;
     JButton btnMonedas, btnTemperatura;
-    
-    public VistaMenu(Menu menu){
+
+    public VistaMenu(Menu menu) {
         this.menu = menu;
         this.inicializador();
         this.inicializadorObjetos();
         this.inicializadorEventos();
     }
-    private void inicializador(){
+
+    private void inicializador() {
         this.setLayout(null);
     }
-    private void inicializadorObjetos(){
+
+    private void inicializadorObjetos() {
         //Botones
         btnMonedas = new JButton("Conversor de Monedas");
         btnMonedas.setBounds(90, 200, 200, 30);
         btnMonedas.setBackground(new Color(152, 65, 235));
         btnMonedas.setForeground(Color.white);
         this.add(btnMonedas);
-        
+
         btnTemperatura = new JButton("Conversor de Temperatura");
         btnTemperatura.setBounds(90, 250, 200, 30);
         btnTemperatura.setBackground(new Color(152, 65, 235));
         btnTemperatura.setForeground(Color.white);
         this.add(btnTemperatura);
-        
+
         //importamos imagen
-        ImageIcon icon = new ImageIcon("./src/main/java/source/convertir.png");
+//        String imagePath = "source/convertir.png"; // ruta relativa de la imagen
+//        File imageFile = new File(imagePath);
+//        String absolutePath = imageFile.getAbsolutePath(); // ruta absoluta de la imagen
+
+        ImageIcon icon = new ImageIcon("./src/main/java/Source/convertir.png");
         //Ajustamos el tamaño del la imagen al label
-        icon.setImage(icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));    
+        icon.setImage(icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
         labelImagen = new JLabel();
         labelImagen.setIcon(icon);
         labelImagen.setBounds(140, 30, 100, 100);
         this.add(labelImagen);
     }
+
     //inicializador de los eventos del boton
-    private void inicializadorEventos(){
-        ActionListener escuchaBtnMonedas = new ActionListener(){
+    private void inicializadorEventos() {
+        ActionListener escuchaBtnMonedas = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -76,10 +83,9 @@ public class VistaMenu extends JPanel {
             }
         };
         btnMonedas.addActionListener(escuchaBtnMonedas);
-       
+
     }
-    
-    
+
     //llamada a las ventanas
     public void escuchaBtnMonedasClick() throws IOException {
 
@@ -88,5 +94,5 @@ public class VistaMenu extends JPanel {
         this.menu.dispose();
 
     }
-    
+
 }

@@ -15,7 +15,8 @@ import javax.swing.JComboBox;
 import javax.swing.*;
 
 /**
- *
+ * Esta clase servira para crear los paneles para posteriormente enviarlos a la clase PanelChanger
+ * al igual que se creara el combobox con sus respectivas opciones
  * @author Daniel
  */
 public class VistaConversionMonedas extends JPanel {
@@ -26,17 +27,25 @@ public class VistaConversionMonedas extends JPanel {
     
     JPanel container;
     JComboBox<String> comboBox;
-
     //componentes de los paneles
+    /**
+     * Metodo Inicializador de otros metodos
+     */
     public VistaConversionMonedas() {
         this.inicializador();
         this.inicializadorObjetos();
     }
-
+    /**
+     * Metodo de configuracion del jpanel actual
+     */
     private void inicializador() {
         this.setLayout(new BorderLayout());
     }
-
+    /**
+     * Metofo que sirve para inicializar los objetos al igual que sirve para darle sus propiedades
+     * se inicializa la clase PanelChanger para darle un evento y poder enviarle el panel y la 
+     * opcion del comboBox
+     */
     private void inicializadorObjetos() {
 
         comboBox = new JComboBox<>(new String[]{"Peso a Euro", "Peso a Yen", "Pesos a Usd"});

@@ -7,7 +7,7 @@ package Main;
 import Contenedores.Menu;
 
 /**
- *
+ * Esta clase sirve para iniciar la aplicacion
  * @author Daniel
  */
 public class Conversor {

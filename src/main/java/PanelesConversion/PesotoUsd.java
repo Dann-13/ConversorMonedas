@@ -4,9 +4,9 @@
  */
 package PanelesConversion;
 
-import Clases.ConvercionMoneda;
-import Clases.Moneda;
-import Clases.TipoCambio;
+import Clases.ClasesConvercionMonedas.ConvercionMoneda;
+import Clases.ClasesConvercionMonedas.Moneda;
+import Clases.ClasesConvercionMonedas.TipoCambio;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -70,7 +70,7 @@ public class PesotoUsd extends JPanel {
         this.add(lblRes);
         
         //importamos imagen
-        ImageIcon icon = new ImageIcon("./src/main/java/source/pesousa.png");
+        ImageIcon icon = new ImageIcon("./src/main/java/Source/pesousa.png");
         //Ajustamos el tamaño del la imagen al label
         icon.setImage(icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
         labelImagen = new JLabel();
