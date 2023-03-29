@@ -45,13 +45,13 @@ public class VistaMenu extends JPanel {
     private void inicializadorObjetos() {
         //Botones
         btnMonedas = new JButton("Conversor de Monedas");
-        btnMonedas.setBounds(90, 200, 200, 30);
+        btnMonedas.setBounds(100, 200, 200, 30);
         btnMonedas.setBackground(new Color(152, 65, 235));
         btnMonedas.setForeground(Color.white);
         this.add(btnMonedas);
 
         btnTemperatura = new JButton("Conversor de Temperatura");
-        btnTemperatura.setBounds(90, 250, 200, 30);
+        btnTemperatura.setBounds(100, 250, 200, 30);
         btnTemperatura.setBackground(new Color(152, 65, 235));
         btnTemperatura.setForeground(Color.white);
         this.add(btnTemperatura);
@@ -66,7 +66,7 @@ public class VistaMenu extends JPanel {
         icon.setImage(icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
         labelImagen = new JLabel();
         labelImagen.setIcon(icon);
-        labelImagen.setBounds(140, 30, 100, 100);
+        labelImagen.setBounds(150, 30, 100, 100);
         this.add(labelImagen);
     }
 

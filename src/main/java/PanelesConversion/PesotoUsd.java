@@ -48,7 +48,8 @@ public class PesotoUsd extends JPanel {
 
         labelTitulo = new JLabel();
         labelTitulo.setText("Conversion de Pesos A Dolares");
-        labelTitulo.setBounds(60, 20, 350, 30);
+        labelTitulo.setBounds(25, 20, 350, 30);
+        labelTitulo.setHorizontalAlignment(JLabel.CENTER);
         labelTitulo.setFont(new Font("Arial", Font.PLAIN, 20));
         this.add(labelTitulo);
 
@@ -75,7 +76,7 @@ public class PesotoUsd extends JPanel {
         icon.setImage(icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
         labelImagen = new JLabel();
         labelImagen.setIcon(icon);
-        labelImagen.setBounds(140, 210, 100, 100);
+        labelImagen.setBounds(150, 210, 100, 100);
         this.add(labelImagen);
 
     }
