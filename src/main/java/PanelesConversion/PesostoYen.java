@@ -23,15 +23,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 /**
  *
- * @author Daniel
+ * @author Daniel Clase PesostoYen que representa una interfaz gráfica para
+ * convertir pesos colombianos a yenes japoneses. Extiende JPanel para funcionar
+ * como un panel en una aplicación Java Swing.
  */
 public class PesostoYen extends JPanel {
 
@@ -50,9 +48,13 @@ public class PesostoYen extends JPanel {
     private void inicializador() {
         this.setLayout(null);
         this.setBackground(new Color(13, 24, 39));
-   
+
     }
 
+    /**
+     * Método que inicializa los objetos gráficos, como etiquetas, campos de
+     * texto y botón. Establece su posición y apariencia.
+     */
     private void inicializadorObjetos() {
         labelTitulo = new JLabel();
         labelTitulo.setText("Conversion de Pesos A Yenes");
@@ -61,7 +63,7 @@ public class PesostoYen extends JPanel {
         labelTitulo.setForeground(Color.white);
         labelTitulo.setFont(new Font("Arial", Font.PLAIN, 20));
         this.add(labelTitulo);
-        
+
         txtNumero = new JTextField(" Ingrese  Valor");
         txtNumero.setForeground(new Color(85, 74, 97));
         txtNumero.setBounds(70, 70, 200, 30);
@@ -113,6 +115,9 @@ public class PesostoYen extends JPanel {
         this.add(labelImagen);
     }
 
+    /**
+     * Método que inicializa los eventos de los componentes gráficos.
+     */
     private void inicializadorEventos() {
         ActionListener escuchaBtnEnviar = new ActionListener() {
             @Override
@@ -124,9 +129,14 @@ public class PesostoYen extends JPanel {
         btnEnviar.addActionListener(escuchaBtnEnviar);
     }
 
+    /**
+     * Método que se ejecuta cuando se hace clic en el botón de enviar. Realiza
+     * la conversión de pesos a yenes y muestra el resultado en la interfaz
+     * gráfica.
+     */
     private void escuchaBtnEnviarClick() {
         String validation = txtNumero.getText();
-        if (validation.matches("[0-9]*")  && validation.length() > 0) {
+        if (validation.matches("[0-9]*") && validation.length() > 0) {
             TipoCambio pesoToUsd = new TipoCambio(peso, yen, 0.0276);
 
             // Crear una lista de tasas de cambio

@@ -14,18 +14,17 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 
 /**
  *
  * @author Daniel
+ * Clase VistaMenu que representa una vista del menú en una interfaz gráfica.
+ * Extiende JPanel para funcionar como un panel en una aplicación Java Swing.
  */
 public class VistaMenu extends JPanel {
 
@@ -34,20 +33,30 @@ public class VistaMenu extends JPanel {
     //propiedades vistas
     JLabel LblUsuario, labelImagen;
     JButton btnMonedas, btnTemperatura;
-
+    
+     /**
+     * Constructor de la clase VistaMenu. Inicializa la interfaz gráfica, los objetos y los eventos.
+     * @param menu Objeto Menu para gestionar el menú principal.
+     */
     public VistaMenu(Menu menu) {
         this.menu = menu;
         this.inicializador();
         this.inicializadorObjetos();
         this.inicializadorEventos();
     }
-
+    
+    /**
+     * Método privado que inicializa el panel y establece su apariencia.
+     */
     private void inicializador() {
         this.setLayout(null);
         this.setBackground(new Color(13, 24, 39));
 
     }
-
+    /**
+     * Método privado que inicializa los objetos gráficos, como etiquetas y botones.
+     * Establece su posición y apariencia.
+     */
     private void inicializadorObjetos() {
         //Botones
         btnMonedas = new JButton("Conversor de Monedas");
@@ -77,7 +86,9 @@ public class VistaMenu extends JPanel {
         this.add(labelImagen);
     }
 
-    //inicializador de los eventos del boton
+    /**
+     * Método privado que inicializa los eventos de los componentes gráficos.
+     */
     private void inicializadorEventos() {
         ActionListener escuchaBtnMonedas = new ActionListener() {
             @Override
@@ -93,7 +104,11 @@ public class VistaMenu extends JPanel {
 
     }
 
-    //llamada a las ventanas
+    /**
+     * Método que se ejecuta cuando se hace clic en el botón de conversor de monedas.
+     * Abre la ventana del conversor de monedas y cierra el menú principal.
+     * @throws IOException Si ocurre un error al abrir la ventana del conversor de monedas.
+     */
     public void escuchaBtnMonedasClick() throws IOException {
 
         ConversionMonedas conver = new ConversionMonedas();
