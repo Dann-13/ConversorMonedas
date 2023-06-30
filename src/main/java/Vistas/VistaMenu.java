@@ -7,17 +7,21 @@ package Vistas;
 import Contenedores.ConversionMonedas;
 import Contenedores.Menu;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -40,33 +44,36 @@ public class VistaMenu extends JPanel {
 
     private void inicializador() {
         this.setLayout(null);
+        this.setBackground(new Color(13, 24, 39));
+
     }
 
     private void inicializadorObjetos() {
         //Botones
         btnMonedas = new JButton("Conversor de Monedas");
-        btnMonedas.setBounds(100, 200, 200, 30);
-        btnMonedas.setBackground(new Color(152, 65, 235));
-        btnMonedas.setForeground(Color.white);
+        btnMonedas.setBounds(75, 220, 250, 45);
+        btnMonedas.setBackground(new Color(45, 212, 191));
+        btnMonedas.setForeground(new Color(13, 24, 39));
+        btnMonedas.setFont(new Font("Arial", Font.BOLD, 15));
         this.add(btnMonedas);
 
         btnTemperatura = new JButton("Conversor de Temperatura");
-        btnTemperatura.setBounds(100, 250, 200, 30);
-        btnTemperatura.setBackground(new Color(152, 65, 235));
-        btnTemperatura.setForeground(Color.white);
+        btnTemperatura.setBounds(75, 285, 250, 45);
+        btnTemperatura.setBackground(new Color(45, 212, 191));
+        btnTemperatura.setForeground(new Color(13, 24, 39));
+        btnTemperatura.setFont(new Font("Arial", Font.BOLD, 15));
         this.add(btnTemperatura);
 
         //importamos imagen
 //        String imagePath = "source/convertir.png"; // ruta relativa de la imagen
 //        File imageFile = new File(imagePath);
 //        String absolutePath = imageFile.getAbsolutePath(); // ruta absoluta de la imagen
-
         ImageIcon icon = new ImageIcon("./src/main/java/Source/convertir.png");
         //Ajustamos el tamaño del la imagen al label
-        icon.setImage(icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+        icon.setImage(icon.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
         labelImagen = new JLabel();
         labelImagen.setIcon(icon);
-        labelImagen.setBounds(150, 30, 100, 100);
+        labelImagen.setBounds(125, 30, 150, 150);
         this.add(labelImagen);
     }
 

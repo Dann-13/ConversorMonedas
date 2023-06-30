@@ -8,15 +8,16 @@ import Contenedores.Menu;
 
 /**
  * Esta clase sirve para iniciar la aplicacion
+ *
  * @author Daniel
  */
 public class Conversor {
 
     public static void main(String[] args) {
-        try{
+        try {
             Menu menu = new Menu();
-        menu.setVisible(true);
-        }catch(Exception e){
+            menu.setVisible(true);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

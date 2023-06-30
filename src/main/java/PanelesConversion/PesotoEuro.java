@@ -12,8 +12,11 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -41,6 +44,7 @@ public class PesotoEuro extends JPanel {
 
     private void inicializador() {
         this.setLayout(null);
+        this.setBackground(new Color(13, 24, 39));
     }
 
     private void inicializadorObjetos() {
@@ -49,23 +53,48 @@ public class PesotoEuro extends JPanel {
         labelTitulo.setBounds(25, 20, 350, 30);
         labelTitulo.setHorizontalAlignment(JLabel.CENTER);
         labelTitulo.setFont(new Font("Arial", Font.PLAIN, 20));
+        labelTitulo.setForeground(Color.WHITE);
         this.add(labelTitulo);
 
-        txtNumero = new JTextField();
-        txtNumero.setSize(100, 25);
-        txtNumero.setLocation(80, 70);
+        txtNumero = new JTextField(" Ingrese  Valor");
+        txtNumero.setForeground(new Color(85, 74, 97));
+        txtNumero.setBounds(70, 70, 200, 30);
+        txtNumero.setSelectionStart(0);
+        txtNumero.setSelectionEnd(0);
+        txtNumero.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        txtNumero.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtNumero.getText().equals(" Ingrese  Valor")) {
+                    txtNumero.setCaretPosition(0);
+                    txtNumero.setText("");
+                    txtNumero.setBorder(BorderFactory.createLineBorder(new Color(45, 212, 191)));
+
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtNumero.getText().isEmpty()) {
+                    txtNumero.setText(" Ingrese  Valor");
+                    txtNumero.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+
+                }
+            }
+        });
         this.add(txtNumero);
 
         btnEnviar = new JButton();
-        btnEnviar.setText("Convertir");
-        btnEnviar.setBounds(210, 70, 100, 25);
-        btnEnviar.setBackground(new Color(152, 65, 235));
-        btnEnviar.setForeground(Color.white);
+        btnEnviar.setText(" = ");
+        btnEnviar.setBounds(270, 70, 60, 30);
+        btnEnviar.setBackground(new Color(45, 212, 191));
+        btnEnviar.setForeground(new Color(13, 24, 39));
         this.add(btnEnviar);
-
+        
         lblRes = new JLabel();
         lblRes.setBounds(50, 130, 400, 30);
-        lblRes.setText("Resultado");
+        lblRes.setText(" ");
+        lblRes.setForeground(Color.WHITE);
         this.add(lblRes);
         
         //importamos imagen
