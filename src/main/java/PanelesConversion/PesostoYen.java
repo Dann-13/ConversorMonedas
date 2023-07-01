@@ -5,6 +5,7 @@
 package PanelesConversion;
 
 import Clases.ClasesConvercionMonedas.ConvercionMoneda;
+import Clases.ClasesConvercionMonedas.CurrencyConverter;
 import Clases.ClasesConvercionMonedas.Moneda;
 import Clases.ClasesConvercionMonedas.TipoCambio;
 import java.awt.Color;
@@ -38,6 +39,7 @@ public class PesostoYen extends JPanel {
     JLabel labelTitulo, lblRes, labelImagen;
     JTextField txtNumero, TxtUsuario;
     JButton btnEnviar;
+    CurrencyConverter convert = new CurrencyConverter();
 
     public PesostoYen() {
         this.inicializador();
@@ -137,19 +139,13 @@ public class PesostoYen extends JPanel {
     private void escuchaBtnEnviarClick() {
         String validation = txtNumero.getText();
         if (validation.matches("[0-9]*") && validation.length() > 0) {
-            TipoCambio pesoToUsd = new TipoCambio(peso, yen, 0.0276);
-
-            // Crear una lista de tasas de cambio
-            List<TipoCambio> exchangeRates = Arrays.asList(pesoToUsd);
-
-            // Crear un objeto CurrencyConverter con las tasas de cambio
-            ConvercionMoneda converter = new ConvercionMoneda(exchangeRates);
-
             // Realizar una conversión de moneda
             double amount = Double.parseDouble(txtNumero.getText());
-            double convertedAmount = converter.convert(amount, peso, yen);
-            System.out.printf("%.2f %s es igual a %.2f %s\n", amount, peso.getSymbol(), convertedAmount, yen.getSymbol());
-
+            String baseCurrency = "COP"; // Moneda base: Pesos colombianos
+            String targetCurrency = "JPY"; // Moneda objetivo: Yenes japoneses
+//            double convertedAmount = converter.convert(amount, peso, yen);
+            
+            double convertedAmount = convert.CurrencyConverter(baseCurrency, targetCurrency, amount);
             lblRes.setText(String.format("<html> La cantidad " + amount + peso.getSymbol() + "<br>es igual en Yenes a " + convertedAmount + yen.getSymbol() + "</html>"));
 
         } else {

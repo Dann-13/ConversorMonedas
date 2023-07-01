@@ -7,6 +7,7 @@ Vistas/VistaConversionMonedas$1.class
 PanelesConversion/PesostoYen$1.class
 Contenedores/Menu.class
 Contenedores/ConversionMonedas.class
+Clases/ClasesConvercionMonedas/CurrencyConverter.class
 PanelesConversion/PesotoUsd$2.class
 Vistas/VistaConversionMonedas.class
 PanelesConversion/PesostoYen$2.class
