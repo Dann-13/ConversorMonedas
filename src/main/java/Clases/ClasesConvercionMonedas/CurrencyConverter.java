@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
+import io.github.cdimascio.dotenv.Dotenv;
 /**
  *
  * @author dann-dev
@@ -24,7 +24,8 @@ import org.json.simple.parser.JSONParser;
 public class CurrencyConverter {
 
     private CurrencyRateCache rateCache;
-    private static final String API_KEY = "75abe60c639a6c0dad4cd461fbc3d52f";
+    Dotenv dotenv = Dotenv.configure().load();
+    String API_KEY = dotenv.get("API_KEY");
     private static final String API_ENDPOINT = "http://data.fixer.io/api/latest";
 
     public CurrencyConverter() {
