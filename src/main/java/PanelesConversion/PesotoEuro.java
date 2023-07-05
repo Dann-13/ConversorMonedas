@@ -129,7 +129,7 @@ public class PesotoEuro extends JPanel {
             double convertedAmount = convert.convertCurrency(baseCurrency, targetCurrency, amount);
             //System.out.printf("%.2f %s es igual a %.2f %s\n", amount, peso.getSymbol(), convertedAmount, eur.getSymbol());
 
-            lblRes.setText(String.format("<html> La cantidad " + amount + "$" + "<br>es igual en Euros a " + convertedAmount + "€" +"</html>"));
+            lblRes.setText(String.format("<html> La cantidad " + amount + "$" + "<br>es igual en Euros a " + String.format("%.2f", convertedAmount) + "€" +"</html>"));
 
         }else{
             JOptionPane.showMessageDialog(null, "Recuerda que solo puedes colocar numeros y no puede estar vacio!", "Error", JOptionPane.WARNING_MESSAGE);

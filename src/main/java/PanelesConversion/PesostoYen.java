@@ -140,7 +140,7 @@ public class PesostoYen extends JPanel {
 //            double convertedAmount = converter.convert(amount, peso, yen);
             
             double convertedAmount = convert.convertCurrency(baseCurrency, targetCurrency, amount);
-            lblRes.setText(String.format("<html> La cantidad " + amount + "$" + "<br>es igual en Yenes a " + convertedAmount + "¥" + "</html>"));
+            lblRes.setText(String.format("<html> La cantidad " + amount + "$" + "<br>es igual en Yenes a " + String.format("%.2f", convertedAmount) + "¥" + "</html>"));
 
         } else {
             JOptionPane.showMessageDialog(null, "Recuerda que solo puedes colocar numeros y no puede estar vacio!", "Error", JOptionPane.WARNING_MESSAGE);

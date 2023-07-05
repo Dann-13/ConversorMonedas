@@ -126,7 +126,7 @@ public class PesotoUsd extends JPanel {
             String baseCurrency = "COP"; // Moneda base: Pesos colombianos
             String targetCurrency = "USD"; // Moneda objetivo: Usd EEUU
             double convertedAmount = convert.convertCurrency(baseCurrency, targetCurrency, amount);
-            lblRes.setText(String.format("<html> La cantidad " + amount + "$" + "<br>es igual en Dolares a " + convertedAmount + "$"+"</html>"));
+            lblRes.setText(String.format("<html> La cantidad " + amount + "$" + "<br>es igual en Dolares a " + String.format("%.2f", convertedAmount) + "$"+"</html>"));
             //lblRes.setText(String.format("<html>Line 1<br>Line 2</html>"));
         } else {
             JOptionPane.showMessageDialog(null, "Solo Numeros", "Error", JOptionPane.WARNING_MESSAGE);
