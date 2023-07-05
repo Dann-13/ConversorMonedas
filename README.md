@@ -6,7 +6,7 @@
 
 Today I'm here to share the Challenge I've been developing for the Alura Latam platform and the Oracle Next Education program!
 
-##Challenge Description
+## Challenge Description
 
 The project under development for the Alura Latam and Oracle Next Education platform, deals with a currency converter and as an extra contribution also the addition of a temperature converter.
 
@@ -18,6 +18,7 @@ The system will allow the exchange of currencies from different countries, as an
 These three conversions are the first to be added to the program, besides that the program is based on OOP (Object Oriented Programming)!!
 
 :construction: Proyecto en construcción :construction:
+Cambios para esta version, aunque se uso la programacion orientada a objetos para crear la moneda y manejar los cambios, se opto por obtener los valores de las monedas directamente desde una API Fixer
 
 ------------
 
