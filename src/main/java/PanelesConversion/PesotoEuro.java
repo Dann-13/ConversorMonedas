@@ -4,9 +4,7 @@
  */
 package PanelesConversion;
 
-import Clases.ClasesConvercionMonedas.ConvercionMoneda;
-import Clases.ClasesConvercionMonedas.Moneda;
-import Clases.ClasesConvercionMonedas.TipoCambio;
+import Clases.ClasesConvercionMonedas.CurrencyConverter;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -29,9 +27,7 @@ import javax.swing.JTextField;
  * @author Daniel
  */
 public class PesotoEuro extends JPanel {
-
-    Moneda eur = new Moneda("Euro", "€", "EUR");
-    Moneda peso = new Moneda("Peso Colombiano", "$", "Cop");
+    CurrencyConverter convert = new CurrencyConverter();
     JLabel labelTitulo, lblRes,labelImagen;
     JTextField txtNumero;
     JButton btnEnviar;
@@ -123,20 +119,17 @@ public class PesotoEuro extends JPanel {
         String validation = txtNumero.getText();
         if (validation.matches("[0-9]*") && validation.length() > 0) {
 
-            TipoCambio pesoToUsd = new TipoCambio(peso, eur, 0.0001972);
-
-            // Crear una lista de tasas de cambio
-            List<TipoCambio> exchangeRates = Arrays.asList(pesoToUsd);
-
-            // Crear un objeto CurrencyConverter con las tasas de cambio
-            ConvercionMoneda converter = new ConvercionMoneda(exchangeRates);
+            
 
             // Realizar una conversión de moneda
             double amount = Double.parseDouble(txtNumero.getText());
-            double convertedAmount = converter.convert(amount, peso, eur);
+            String baseCurrency = "COP"; // Moneda base: Pesos colombianos
+            String targetCurrency = "EUR"; // Moneda objetivo: Yenes japoneses
+
+            double convertedAmount = convert.convertCurrency(baseCurrency, targetCurrency, amount);
             //System.out.printf("%.2f %s es igual a %.2f %s\n", amount, peso.getSymbol(), convertedAmount, eur.getSymbol());
 
-            lblRes.setText(String.format("<html> La cantidad " + amount + peso.getSymbol() + "<br>es igual en Euros a " + convertedAmount + eur.getSymbol()+"</html>"));
+            lblRes.setText(String.format("<html> La cantidad " + amount + "$" + "<br>es igual en Euros a " + convertedAmount + "€" +"</html>"));
 
         }else{
             JOptionPane.showMessageDialog(null, "Recuerda que solo puedes colocar numeros y no puede estar vacio!", "Error", JOptionPane.WARNING_MESSAGE);

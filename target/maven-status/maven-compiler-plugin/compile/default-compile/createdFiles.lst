@@ -1,6 +1,5 @@
 PanelesConversion/PesotoEuro$1.class
 CacheConvert/CurrencyRateCache.class
-Clases/ClasesConvercionMonedas/Moneda.class
 PanelesConversion/PesostoYen.class
 PanelesConversion/PesotoEuro$2.class
 Vistas/VistaMenu$1.class
@@ -14,10 +13,8 @@ PanelesConversion/PesotoUsd$2.class
 Vistas/VistaConversionMonedas.class
 PanelesConversion/PesostoYen$2.class
 Vistas/PanelChanger.class
-Clases/ClasesConvercionMonedas/ConvercionMoneda.class
 PanelesConversion/PesotoEuro.class
 PanelesConversion/PesotoUsd$1.class
-Clases/ClasesConvercionMonedas/TipoCambio.class
 PanelesConversion/PesotoUsd.class
 Vistas/VistaMenu.class
 Main/Conversor.class

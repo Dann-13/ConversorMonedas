@@ -4,9 +4,7 @@
  */
 package PanelesConversion;
 
-import Clases.ClasesConvercionMonedas.ConvercionMoneda;
-import Clases.ClasesConvercionMonedas.Moneda;
-import Clases.ClasesConvercionMonedas.TipoCambio;
+import Clases.ClasesConvercionMonedas.CurrencyConverter;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -30,9 +28,7 @@ import javax.swing.JTextField;
  * @author Daniel
  */
 public class PesotoUsd extends JPanel {
-
-    Moneda usd = new Moneda("Usd", "$", "USD");
-    Moneda peso = new Moneda("Peso Colombiano", "$", "COP");
+    CurrencyConverter convert = new CurrencyConverter();
     JLabel labelTitulo, lblRes,labelImagen;
     JTextField txtNumero;
     JButton btnEnviar;
@@ -124,20 +120,13 @@ public class PesotoUsd extends JPanel {
     private void escuchaBtnEnviarClick() {
         String validation = txtNumero.getText();
         if (validation.matches("[0-9]*")  && validation.length() > 0) {
-            TipoCambio pesoToUsd = new TipoCambio(peso, usd, 0.000209);
-
-            // Crear una lista de tasas de cambio
-            List<TipoCambio> exchangeRates = Arrays.asList(pesoToUsd);
-
-            // Crear un objeto CurrencyConverter con las tasas de cambio
-            ConvercionMoneda converter = new ConvercionMoneda(exchangeRates);
 
             // Realizar una conversión de moneda
             double amount = Double.parseDouble(txtNumero.getText());
-            double convertedAmount = converter.convert(amount, peso, usd);
-            System.out.printf("%.2f %s es igual a %.2f %s\n", amount, peso.getSymbol(), convertedAmount, usd.getSymbol());
-
-            lblRes.setText(String.format("<html> La cantidad " + amount + peso.getSymbol() + "<br>es igual en Dolares a " + convertedAmount + usd.getSymbol()+"</html>"));
+            String baseCurrency = "COP"; // Moneda base: Pesos colombianos
+            String targetCurrency = "USD"; // Moneda objetivo: Usd EEUU
+            double convertedAmount = convert.convertCurrency(baseCurrency, targetCurrency, amount);
+            lblRes.setText(String.format("<html> La cantidad " + amount + "$" + "<br>es igual en Dolares a " + convertedAmount + "$"+"</html>"));
             //lblRes.setText(String.format("<html>Line 1<br>Line 2</html>"));
         } else {
             JOptionPane.showMessageDialog(null, "Solo Numeros", "Error", JOptionPane.WARNING_MESSAGE);

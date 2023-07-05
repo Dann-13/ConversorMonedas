@@ -4,10 +4,7 @@
  */
 package PanelesConversion;
 
-import Clases.ClasesConvercionMonedas.ConvercionMoneda;
 import Clases.ClasesConvercionMonedas.CurrencyConverter;
-import Clases.ClasesConvercionMonedas.Moneda;
-import Clases.ClasesConvercionMonedas.TipoCambio;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -33,9 +30,6 @@ import javax.swing.JTextField;
  * como un panel en una aplicación Java Swing.
  */
 public class PesostoYen extends JPanel {
-
-    Moneda yen = new Moneda("Yen", "¥", "Yen");
-    Moneda peso = new Moneda("Peso Colombiano", "$", "Cop");
     JLabel labelTitulo, lblRes, labelImagen;
     JTextField txtNumero, TxtUsuario;
     JButton btnEnviar;
@@ -146,7 +140,7 @@ public class PesostoYen extends JPanel {
 //            double convertedAmount = converter.convert(amount, peso, yen);
             
             double convertedAmount = convert.convertCurrency(baseCurrency, targetCurrency, amount);
-            lblRes.setText(String.format("<html> La cantidad " + amount + peso.getSymbol() + "<br>es igual en Yenes a " + convertedAmount + yen.getSymbol() + "</html>"));
+            lblRes.setText(String.format("<html> La cantidad " + amount + "$" + "<br>es igual en Yenes a " + convertedAmount + "¥" + "</html>"));
 
         } else {
             JOptionPane.showMessageDialog(null, "Recuerda que solo puedes colocar numeros y no puede estar vacio!", "Error", JOptionPane.WARNING_MESSAGE);
