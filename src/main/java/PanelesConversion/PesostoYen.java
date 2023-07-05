@@ -145,7 +145,7 @@ public class PesostoYen extends JPanel {
             String targetCurrency = "JPY"; // Moneda objetivo: Yenes japoneses
 //            double convertedAmount = converter.convert(amount, peso, yen);
             
-            double convertedAmount = convert.CurrencyConverter(baseCurrency, targetCurrency, amount);
+            double convertedAmount = convert.convertCurrency(baseCurrency, targetCurrency, amount);
             lblRes.setText(String.format("<html> La cantidad " + amount + peso.getSymbol() + "<br>es igual en Yenes a " + convertedAmount + yen.getSymbol() + "</html>"));
 
         } else {
