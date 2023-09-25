@@ -4,8 +4,8 @@
  */
 package Vistas;
 
-import Contenedores.ConversionMonedas;
 import Contenedores.Menu;
+import Vistas.Contenedores.ConversionMonedas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -110,7 +110,6 @@ public class VistaMenu extends JPanel {
      * @throws IOException Si ocurre un error al abrir la ventana del conversor de monedas.
      */
     public void escuchaBtnMonedasClick() throws IOException {
-
         ConversionMonedas conver = new ConversionMonedas();
         conver.setVisible(true);
         this.menu.dispose();

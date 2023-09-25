@@ -2,27 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Contenedores;
+package Vistas.Contenedores;
 
-import Vistas.VistaConversionMonedas;
-import java.io.IOException;
-import javax.swing.JComboBox;
+import Vistas.PanelesConversion.VistaConversionMoneda;
 import javax.swing.JFrame;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
  *
- * @author Daniel
+ * @author dan-dev
  */
-public class ConversionMonedas extends JFrame {
-
-    VistaConversionMonedas conversionMonedas;
-
-    public ConversionMonedas() throws IOException {
+public class ConversionMonedas extends JFrame{
+    VistaConversionMoneda con;
+    public ConversionMonedas(){
         this.inicializador();
         this.inicializadorObjetos();
     }
-
     private void inicializador() {
         this.setSize(400, 400);
         this.setTitle("Conversion de Monedas");
@@ -33,8 +27,7 @@ public class ConversionMonedas extends JFrame {
     }
 
     private void inicializadorObjetos() {
-        conversionMonedas = new VistaConversionMonedas();
-        this.getContentPane().add(conversionMonedas);
+        con = new VistaConversionMoneda();
+        this.getContentPane().add(con);
     }
-
 }
