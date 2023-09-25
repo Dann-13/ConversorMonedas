@@ -43,7 +43,7 @@ public class CurrencyConverter {
     * @return Moneda Convertida
     */
     public double convertCurrency(String baseCurrency, String targetCurrency, double amount) {
-        
+       
         Double baseRate = rateCache.getRate(baseCurrency);
         Double targetRate = rateCache.getRate(targetCurrency);
 
@@ -71,6 +71,7 @@ public class CurrencyConverter {
         try {
             //Url donde se enviara la solicitud GET
             String urlStr = API_ENDPOINT + "?access_key=" + API_KEY;
+            System.out.println(urlStr);
             //Se crea un objeto URL con la cadena anterior 
             URL url = new URL(urlStr);
             //Se establece una conexión HTTP 
