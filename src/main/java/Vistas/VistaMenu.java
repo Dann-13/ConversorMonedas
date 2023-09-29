@@ -6,6 +6,7 @@ package Vistas;
 
 import Contenedores.Menu;
 import Vistas.Contenedores.ConversionMonedas;
+import Vistas.Contenedores.ConversorTemperaturaFrame;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -101,6 +102,14 @@ public class VistaMenu extends JPanel {
             }
         };
         btnMonedas.addActionListener(escuchaBtnMonedas);
+        
+        ActionListener escuchaBtnTemperatura = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                escuchaBtnTemperaturaClick();
+            }
+        };
+        btnTemperatura.addActionListener(escuchaBtnTemperatura);
 
     }
 
@@ -114,6 +123,11 @@ public class VistaMenu extends JPanel {
         conver.setVisible(true);
         this.menu.dispose();
 
+    }
+    public void escuchaBtnTemperaturaClick(){
+        ConversorTemperaturaFrame converTemp = new ConversorTemperaturaFrame();
+        converTemp.setVisible(true);
+        this.menu.dispose();
     }
 
 }

@@ -18,7 +18,7 @@ public class ConversionMonedas extends JFrame{
         this.inicializadorObjetos();
     }
     private void inicializador() {
-        this.setSize(400, 400);
+        this.setSize(600, 500);
         this.setTitle("Conversion de Monedas");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
