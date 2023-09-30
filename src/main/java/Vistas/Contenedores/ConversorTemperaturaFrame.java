@@ -4,7 +4,6 @@
  */
 package Vistas.Contenedores;
 
-import Vistas.PanelesConversion.NewJPanel;
 import Vistas.PanelesConversion.VistaConversionTemperatura;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -14,7 +13,7 @@ import javax.swing.JFrame;
  * @author dan-dev
  */
 public class ConversorTemperaturaFrame extends JFrame{
-    NewJPanel vistaConversionTemperatura;
+    VistaConversionTemperatura vistaConversionTemperatura;
     public ConversorTemperaturaFrame(){
         this.inicializador();
         this.inicializadorObjetos();
@@ -29,7 +28,7 @@ public class ConversorTemperaturaFrame extends JFrame{
     }
 
     private void inicializadorObjetos() {
-        vistaConversionTemperatura = new NewJPanel();
+        vistaConversionTemperatura = new VistaConversionTemperatura();
         this.setLayout(new BorderLayout());
         this.add(vistaConversionTemperatura, BorderLayout.CENTER);
         this.getContentPane().add(vistaConversionTemperatura);
