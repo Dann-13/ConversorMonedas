@@ -4,7 +4,7 @@
  */
 package Main;
 
-import Contenedores.Menu;
+import Vistas.Contenedores.Menu;
 
 /**
  * Esta clase sirve para iniciar la aplicacion

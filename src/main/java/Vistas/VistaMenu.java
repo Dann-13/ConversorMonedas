@@ -4,9 +4,9 @@
  */
 package Vistas;
 
-import Contenedores.Menu;
-import Vistas.Contenedores.ConversionMonedas;
-import Vistas.Contenedores.ConversorTemperaturaFrame;
+import Vistas.Contenedores.Menu;
+import Vistas.Contenedores.ConversionTemperaturaFrame;
+import Vistas.Contenedores.ConversorMonedasFrame;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -94,11 +94,7 @@ public class VistaMenu extends JPanel {
         ActionListener escuchaBtnMonedas = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    escuchaBtnMonedasClick();
-                } catch (IOException ex) {
-                    Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                escuchaBtnMonedasClick();
             }
         };
         btnMonedas.addActionListener(escuchaBtnMonedas);
@@ -118,16 +114,18 @@ public class VistaMenu extends JPanel {
      * Abre la ventana del conversor de monedas y cierra el menú principal.
      * @throws IOException Si ocurre un error al abrir la ventana del conversor de monedas.
      */
-    public void escuchaBtnMonedasClick() throws IOException {
-        ConversionMonedas conver = new ConversionMonedas();
-        conver.setVisible(true);
+    public void escuchaBtnMonedasClick()  {
+        
+        ConversorMonedasFrame converMone = new ConversorMonedasFrame();
+        converMone.setVisible(true);
         this.menu.dispose();
 
     }
     public void escuchaBtnTemperaturaClick(){
-        ConversorTemperaturaFrame converTemp = new ConversorTemperaturaFrame();
+        ConversionTemperaturaFrame converTemp = new ConversionTemperaturaFrame();
         converTemp.setVisible(true);
         this.menu.dispose();
+
     }
 
 }

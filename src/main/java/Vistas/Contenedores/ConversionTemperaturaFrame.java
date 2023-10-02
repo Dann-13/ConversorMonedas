@@ -5,34 +5,29 @@
 package Vistas.Contenedores;
 
 import Vistas.PanelesConversion.VistaConversionTemperatura;
-import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 /**
  *
  * @author dan-dev
  */
-public class ConversorTemperaturaFrame extends JFrame{
-    VistaConversionTemperatura vistaConversionTemperatura;
-    public ConversorTemperaturaFrame(){
+public class ConversionTemperaturaFrame extends JFrame{
+    VistaConversionTemperatura con;
+    public ConversionTemperaturaFrame(){
         this.inicializador();
         this.inicializadorObjetos();
     }
     private void inicializador() {
-        this.setSize(500, 500);
-        this.setTitle("Conversion de Temperatura");
+        this.setSize(500, 600);
+        this.setTitle("Conversion de Monedas");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        
+
     }
 
     private void inicializadorObjetos() {
-        vistaConversionTemperatura = new VistaConversionTemperatura();
-        this.setLayout(new BorderLayout());
-        this.add(vistaConversionTemperatura, BorderLayout.CENTER);
-        this.getContentPane().add(vistaConversionTemperatura);
-        
-
+        con = new VistaConversionTemperatura();
+        this.getContentPane().add(con);
     }
 }

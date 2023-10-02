@@ -5,29 +5,34 @@
 package Vistas.Contenedores;
 
 import Vistas.PanelesConversion.VistaConversionMoneda;
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 /**
  *
  * @author dan-dev
  */
-public class ConversionMonedas extends JFrame{
-    VistaConversionMoneda con;
-    public ConversionMonedas(){
+public class ConversorMonedasFrame extends JFrame{
+    VistaConversionMoneda vistaConversionMonedas;
+    public ConversorMonedasFrame(){
         this.inicializador();
         this.inicializadorObjetos();
     }
     private void inicializador() {
-        this.setSize(600, 500);
+        this.setSize(500, 600);
         this.setTitle("Conversion de Monedas");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-
+        
     }
 
     private void inicializadorObjetos() {
-        con = new VistaConversionMoneda();
-        this.getContentPane().add(con);
+        vistaConversionMonedas = new VistaConversionMoneda();
+        this.setLayout(new BorderLayout());
+        this.add(vistaConversionMonedas, BorderLayout.CENTER);
+        this.getContentPane().add(vistaConversionMonedas);
+        
+
     }
 }
