@@ -4,7 +4,10 @@
  */
 package Vistas.PanelesConversion;
 
+import Clases.Filtro.NumerosDocumentFilter;
+import Controllers.TemperaturaController;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.text.AbstractDocument;
 
 /**
  *
@@ -12,10 +15,14 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class VistaConversionTemperatura extends javax.swing.JPanel {
 
+    
+    TemperaturaController temController;
+
     /**
      * Creates new form Temperatura
      */
     public VistaConversionTemperatura() {
+        temController = new TemperaturaController();
         initComponents();
         uiEditor();
     }
@@ -73,12 +80,12 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("TEMPERATURA");
 
         jLabelRes.setBackground(new java.awt.Color(255, 255, 255));
         jLabelRes.setFont(new java.awt.Font("Big John", 0, 20)); // NOI18N
         jLabelRes.setForeground(new java.awt.Color(45, 212, 191));
-        jLabelRes.setText("20");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -118,18 +125,20 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtTemperauraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTemperauraActionPerformed
-        
+
 
     }//GEN-LAST:event_txtTemperauraActionPerformed
 
     private void btnConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertActionPerformed
-       // TODO add your handling code here:
-        String selectedSourceCurrency = (String) sourceTempComboBox.getSelectedItem();
-        String selectedTargetCurrency = (String) targetTempComboBox.getSelectedItem();
+        // TODO add your handling code here:
+        String selectedSourceTemp = (String) sourceTempComboBox.getSelectedItem();
+        String selectedTargetTemp = (String) targetTempComboBox.getSelectedItem();
         double amount = Double.parseDouble(txtTemperaura.getText());
-        System.out.println(selectedSourceCurrency);
-
         
+        double res = temController.convertirTemperatura(amount, selectedSourceTemp, selectedTargetTemp);
+        jLabelRes.setText(String.valueOf(res));
+
+
     }//GEN-LAST:event_btnConvertActionPerformed
 
     private void sourceTempComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sourceTempComboBoxActionPerformed
@@ -148,10 +157,15 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void uiEditor() {
-        String[] temps = {"Centigrados ºC ", "FahrenheitºF", "Kelvin K", "Rankine R"};
+        String[] temps = {"Centigrados ºC ", "Fahrenheit ºF", "Kelvin K", "Rankine R"};
         DefaultComboBoxModel<String> sourceTempModel = new DefaultComboBoxModel<>(temps);
         sourceTempComboBox.setModel(sourceTempModel);
-        
-        targetTempComboBox.setModel(sourceTempModel);
+
+        DefaultComboBoxModel<String> targetTempModel = new DefaultComboBoxModel<>(temps);
+        targetTempComboBox.setModel(targetTempModel);
+
+        AbstractDocument doc = (AbstractDocument) txtTemperaura.getDocument();
+        doc.setDocumentFilter(new NumerosDocumentFilter());
     }
+
 }

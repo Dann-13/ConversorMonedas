@@ -19,7 +19,7 @@ public class ConversionTemperaturaFrame extends JFrame{
     }
     private void inicializador() {
         this.setSize(500, 600);
-        this.setTitle("Conversion de Monedas");
+        this.setTitle("Conversion de Temperatura");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);

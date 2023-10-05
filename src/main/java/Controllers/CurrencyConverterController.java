@@ -4,7 +4,7 @@
  */
 package Controllers;
 
-import Clases.ClasesConvercionMonedas.CurrencyConverter;
+import Model.CurrencyConverter;
 import Exception.CurrencyConversionException;
 
 /**
