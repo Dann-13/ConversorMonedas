@@ -6,7 +6,14 @@ package Vistas.PanelesConversion;
 
 import Clases.Filtro.NumerosDocumentFilter;
 import Controllers.TemperaturaController;
+import Vistas.Contenedores.Menu;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.text.AbstractDocument;
 
 /**
@@ -15,8 +22,8 @@ import javax.swing.text.AbstractDocument;
  */
 public class VistaConversionTemperatura extends javax.swing.JPanel {
 
-    
     TemperaturaController temController;
+    Menu menu;
 
     /**
      * Creates new form Temperatura
@@ -24,8 +31,11 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
     public VistaConversionTemperatura() {
         temController = new TemperaturaController();
         initComponents();
+        setImageLabel(jLabelImg, "./src/main/java/Source/temp.png");
         uiEditor();
+        inicializadorEventos();
     }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,6 +53,8 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
         btnConvert = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabelRes = new javax.swing.JLabel();
+        jLabelImg = new javax.swing.JLabel();
+        jButtonVolver = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(13, 24, 39));
         setPreferredSize(new java.awt.Dimension(500, 600));
@@ -87,6 +99,16 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
         jLabelRes.setFont(new java.awt.Font("Big John", 0, 20)); // NOI18N
         jLabelRes.setForeground(new java.awt.Color(45, 212, 191));
 
+        jButtonVolver.setBackground(new java.awt.Color(45, 212, 191));
+        jButtonVolver.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
+        jButtonVolver.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonVolver.setText("<-");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,23 +118,37 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
                 .addComponent(jLabelRes, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTemperaura, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sourceTempComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(targetTempComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConvert, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTemperaura, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sourceTempComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(targetTempComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnConvert, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabelImg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabelImg, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtTemperaura, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(sourceTempComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(targetTempComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -120,7 +156,7 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
                 .addComponent(btnConvert, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelRes, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGap(59, 59, 59))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -134,7 +170,7 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
         String selectedSourceTemp = (String) sourceTempComboBox.getSelectedItem();
         String selectedTargetTemp = (String) targetTempComboBox.getSelectedItem();
         double amount = Double.parseDouble(txtTemperaura.getText());
-        
+
         double res = temController.convertirTemperatura(amount, selectedSourceTemp, selectedTargetTemp);
         jLabelRes.setText(String.valueOf(res));
 
@@ -145,10 +181,16 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_sourceTempComboBoxActionPerformed
 
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonVolverActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConvert;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelImg;
     private javax.swing.JLabel jLabelRes;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JComboBox<String> sourceTempComboBox;
@@ -166,6 +208,28 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
 
         AbstractDocument doc = (AbstractDocument) txtTemperaura.getDocument();
         doc.setDocumentFilter(new NumerosDocumentFilter());
+    }
+
+    public void setImageLabel(JLabel labelName, String root) {
+        ImageIcon imagen = new ImageIcon(root);
+        Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+        labelName.setIcon(icon);
+        
+        labelName.setHorizontalAlignment(JLabel.CENTER);
+        labelName.setVerticalAlignment(JLabel.CENTER);
+    }
+
+    private void inicializadorEventos() {
+        ActionListener escuchaBtnVolver = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                escuchaBtnRegisterClick();
+            }
+        };
+        jButtonVolver.addActionListener(escuchaBtnVolver);
+    }
+    public void escuchaBtnRegisterClick() {
+        //menu.showMenuPanel();
     }
 
 }

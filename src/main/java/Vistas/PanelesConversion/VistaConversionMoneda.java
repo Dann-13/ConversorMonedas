@@ -12,6 +12,7 @@ import java.awt.Image;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.text.AbstractDocument;
 
 /**
@@ -28,6 +29,7 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
     public VistaConversionMoneda() {
         initComponents();
         uiEditor();
+        setImageLabel(jLabelImg, "./src/main/java/Source/pesoeuro.png");
         controller = new CurrencyConverterController(new CurrencyConverter());
     }
 
@@ -47,7 +49,7 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
         targetCurrencyComboBox = new javax.swing.JComboBox<>();
         btnConvert = new javax.swing.JButton();
         jLabelRes = new javax.swing.JLabel();
-        jLabelLogo = new javax.swing.JLabel();
+        jLabelImg = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(13, 24, 39));
         setPreferredSize(new java.awt.Dimension(500, 600));
@@ -104,16 +106,16 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
                             .addComponent(txtImporte, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                             .addComponent(btnConvert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(173, 173, 173)
+                        .addComponent(jLabelImg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(41, 41, 41)
+                .addComponent(jLabelImg, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lblImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,10 +149,9 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
         this.jLabelRes.setText(String.valueOf(convertedAmount));
     }//GEN-LAST:event_btnConvertActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConvert;
-    private javax.swing.JLabel jLabelLogo;
+    private javax.swing.JLabel jLabelImg;
     private javax.swing.JLabel jLabelRes;
     private javax.swing.JLabel lblImporte;
     private javax.swing.JComboBox<String> sourceCurrencyComboBox;
@@ -167,10 +168,14 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
         DefaultComboBoxModel<String> targetCurrencyModel = new DefaultComboBoxModel<>(currencies);
         targetCurrencyComboBox.setModel(targetCurrencyModel);
 
-        jLabelLogo.setSize(new Dimension(100, 100));
-        ImageIcon imageIcon = new ImageIcon("./src/main/java/Source/convertir.png");
-        Icon icon = new ImageIcon(imageIcon.getImage().getScaledInstance(jLabelLogo.getWidth(), jLabelLogo.getHeight(), Image.SCALE_DEFAULT));
-        jLabelLogo.setIcon(icon);
-
     }
+
+    public void setImageLabel(JLabel labelName, String root) {
+        ImageIcon imagen = new ImageIcon(root);
+        Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+        labelName.setHorizontalAlignment(JLabel.CENTER);
+        labelName.setVerticalAlignment(JLabel.CENTER);
+        labelName.setIcon(icon);
+    }
+
 }
