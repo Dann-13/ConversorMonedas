@@ -15,6 +15,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.text.AbstractDocument;
 
 /**
@@ -37,7 +38,6 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
         uiEditor();
         inicializadorEventos();
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -169,12 +169,24 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
 
     private void btnConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertActionPerformed
         // TODO add your handling code here:
+
         String selectedSourceTemp = (String) sourceTempComboBox.getSelectedItem();
         String selectedTargetTemp = (String) targetTempComboBox.getSelectedItem();
-        double amount = Double.parseDouble(txtTemperaura.getText());
+        String inputText = txtTemperaura.getText();
 
-        double res = temController.convertirTemperatura(amount, selectedSourceTemp, selectedTargetTemp);
-        jLabelRes.setText(String.valueOf(res));
+        if (inputText.isEmpty()) {
+            // El campo está vacío, muestra una ventana de advertencia
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un valor en el campo de temperatura.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                double amount = Double.parseDouble(inputText);
+                double res = temController.convertirTemperatura(amount, selectedSourceTemp, selectedTargetTemp);
+                jLabelRes.setText(String.valueOf(res));
+            } catch (NumberFormatException e) {
+                // El valor ingresado no es un número válido, muestra una ventana de advertencia
+                JOptionPane.showMessageDialog(this, "El valor ingresado no es válido. Por favor, ingrese un número.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        }
 
 
     }//GEN-LAST:event_btnConvertActionPerformed
@@ -216,7 +228,7 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
         ImageIcon imagen = new ImageIcon(root);
         Icon icon = new ImageIcon(imagen.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
         labelName.setIcon(icon);
-        
+
         labelName.setHorizontalAlignment(JLabel.CENTER);
         labelName.setVerticalAlignment(JLabel.CENTER);
     }
@@ -230,9 +242,11 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
         };
         jButtonVolver.addActionListener(escuchaBtnVolver);
     }
+
     private void escuchaBtnRegisterClick() {
         frame.dispose(); // Cierra el ConversionTemperaturaFrame actual
         Menu menu = new Menu();
         menu.setVisible(true);
     }
+
 }

@@ -18,6 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.text.AbstractDocument;
 
 /**
@@ -35,7 +36,7 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
     public VistaConversionMoneda(ConversorMonedasFrame frame) {
         this.frame = frame;
         initComponents();
-        uiEditor();      
+        uiEditor();
         setImageLabel(jLabelImg, "./src/main/java/Source/pesoeuro.png");
         controller = new CurrencyConverterController(new CurrencyConverter());
         inicializadorEventos();
@@ -168,11 +169,22 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
         // TODO add your handling code here:
         String selectedSourceCurrency = (String) sourceCurrencyComboBox.getSelectedItem();
         String selectedTargetCurrency = (String) targetCurrencyComboBox.getSelectedItem();
-        double amount = Double.parseDouble(txtImporte.getText());
+        String inputText = txtImporte.getText();
 
-        // Realizar alguna acción con los valores seleccionados, por ejemplo, mostrarlos
-        double convertedAmount = controller.convertCurrency(selectedSourceCurrency, selectedTargetCurrency, amount);
-        this.jLabelRes.setText(String.valueOf(convertedAmount));
+        if (inputText.isEmpty()) {
+            // El campo está vacío, muestra una ventana de advertencia
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un valor en el campo de importe.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                double amount = Double.parseDouble(inputText);
+                // Realizar la conversión de moneda con los valores seleccionados
+                double convertedAmount = controller.convertCurrency(selectedSourceCurrency, selectedTargetCurrency, amount);
+                this.jLabelRes.setText(String.valueOf(convertedAmount));
+            } catch (NumberFormatException e) {
+                // El valor ingresado no es un número válido, muestra una ventana de advertencia
+                JOptionPane.showMessageDialog(this, "El valor ingresado no es válido. Por favor, ingrese un número.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnConvertActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
@@ -208,7 +220,7 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
         labelName.setVerticalAlignment(JLabel.CENTER);
         labelName.setIcon(icon);
     }
-    
+
     private void inicializadorEventos() {
         ActionListener escuchaBtnVolver = new ActionListener() {
             @Override
@@ -218,6 +230,7 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
         };
         jButtonVolver.addActionListener(escuchaBtnVolver);
     }
+
     private void escuchaBtnVolverClick() {
         frame.dispose(); // Cierra el ConversionTemperaturaFrame actual
         Menu menu = new Menu();
