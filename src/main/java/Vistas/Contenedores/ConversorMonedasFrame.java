@@ -28,7 +28,7 @@ public class ConversorMonedasFrame extends JFrame{
     }
 
     private void inicializadorObjetos() {
-        vistaConversionMonedas = new VistaConversionMoneda();
+        vistaConversionMonedas = new VistaConversionMoneda(this);
         this.setLayout(new BorderLayout());
         this.add(vistaConversionMonedas, BorderLayout.CENTER);
         this.getContentPane().add(vistaConversionMonedas);

@@ -6,6 +6,7 @@ package Vistas.PanelesConversion;
 
 import Clases.Filtro.NumerosDocumentFilter;
 import Controllers.TemperaturaController;
+import Vistas.Contenedores.ConversionTemperaturaFrame;
 import Vistas.Contenedores.Menu;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -23,12 +24,13 @@ import javax.swing.text.AbstractDocument;
 public class VistaConversionTemperatura extends javax.swing.JPanel {
 
     TemperaturaController temController;
-    Menu menu;
+    private ConversionTemperaturaFrame frame;
 
     /**
      * Creates new form Temperatura
      */
-    public VistaConversionTemperatura() {
+    public VistaConversionTemperatura(ConversionTemperaturaFrame frame) {
+        this.frame = frame;
         temController = new TemperaturaController();
         initComponents();
         setImageLabel(jLabelImg, "./src/main/java/Source/temp.png");
@@ -199,7 +201,7 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void uiEditor() {
-        String[] temps = {"Centigrados ºC ", "Fahrenheit ºF", "Kelvin K", "Rankine R"};
+        String[] temps = {"Centigrados ºC ", "Fahrenheit ºF", "Kelvin K", "Rankine R", "Reaumur Re"};
         DefaultComboBoxModel<String> sourceTempModel = new DefaultComboBoxModel<>(temps);
         sourceTempComboBox.setModel(sourceTempModel);
 
@@ -228,8 +230,9 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
         };
         jButtonVolver.addActionListener(escuchaBtnVolver);
     }
-    public void escuchaBtnRegisterClick() {
-        //menu.showMenuPanel();
+    private void escuchaBtnRegisterClick() {
+        frame.dispose(); // Cierra el ConversionTemperaturaFrame actual
+        Menu menu = new Menu();
+        menu.setVisible(true);
     }
-
 }

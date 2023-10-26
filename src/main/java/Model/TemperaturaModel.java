@@ -88,7 +88,4 @@ public class TemperaturaModel {
         return fahrenheitToRankine(reaumurToFahrenheit(re));
     } // - reaumurToRankine
 
-    
-    
-    
 }

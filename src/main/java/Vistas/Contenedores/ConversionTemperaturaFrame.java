@@ -27,7 +27,7 @@ public class ConversionTemperaturaFrame extends JFrame{
     }
 
     private void inicializadorObjetos() {
-        con = new VistaConversionTemperatura();
+        con = new VistaConversionTemperatura(this);
         this.getContentPane().add(con);
     }
 }

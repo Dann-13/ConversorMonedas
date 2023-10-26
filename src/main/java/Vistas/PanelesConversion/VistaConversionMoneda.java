@@ -7,8 +7,13 @@ package Vistas.PanelesConversion;
 import Model.CurrencyConverter;
 import Clases.Filtro.NumerosDocumentFilter;
 import Controllers.CurrencyConverterController;
+import Vistas.Contenedores.ConversionTemperaturaFrame;
+import Vistas.Contenedores.ConversorMonedasFrame;
+import Vistas.Contenedores.Menu;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -22,15 +27,18 @@ import javax.swing.text.AbstractDocument;
 public class VistaConversionMoneda extends javax.swing.JPanel {
 
     private CurrencyConverterController controller;
+    private ConversorMonedasFrame frame;
 
     /**
      * Creates new form NewJPanel
      */
-    public VistaConversionMoneda() {
+    public VistaConversionMoneda(ConversorMonedasFrame frame) {
+        this.frame = frame;
         initComponents();
-        uiEditor();
+        uiEditor();      
         setImageLabel(jLabelImg, "./src/main/java/Source/pesoeuro.png");
         controller = new CurrencyConverterController(new CurrencyConverter());
+        inicializadorEventos();
     }
 
     /**
@@ -50,6 +58,7 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
         btnConvert = new javax.swing.JButton();
         jLabelRes = new javax.swing.JLabel();
         jLabelImg = new javax.swing.JLabel();
+        jButtonVolver = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(13, 24, 39));
         setPreferredSize(new java.awt.Dimension(500, 600));
@@ -90,6 +99,16 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
         jLabelRes.setForeground(new java.awt.Color(45, 212, 191));
         jLabelRes.setText("20");
 
+        jButtonVolver.setBackground(new java.awt.Color(45, 212, 191));
+        jButtonVolver.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
+        jButtonVolver.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonVolver.setText("<-");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,15 +125,22 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
                             .addComponent(txtImporte, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                             .addComponent(btnConvert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
+                        .addContainerGap()
+                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(102, 102, 102)
                         .addComponent(jLabelImg, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabelImg, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabelImg, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(lblImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -149,8 +175,13 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
         this.jLabelRes.setText(String.valueOf(convertedAmount));
     }//GEN-LAST:event_btnConvertActionPerformed
 
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonVolverActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConvert;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabelImg;
     private javax.swing.JLabel jLabelRes;
     private javax.swing.JLabel lblImporte;
@@ -176,6 +207,21 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
         labelName.setHorizontalAlignment(JLabel.CENTER);
         labelName.setVerticalAlignment(JLabel.CENTER);
         labelName.setIcon(icon);
+    }
+    
+    private void inicializadorEventos() {
+        ActionListener escuchaBtnVolver = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                escuchaBtnVolverClick();
+            }
+        };
+        jButtonVolver.addActionListener(escuchaBtnVolver);
+    }
+    private void escuchaBtnVolverClick() {
+        frame.dispose(); // Cierra el ConversionTemperaturaFrame actual
+        Menu menu = new Menu();
+        menu.setVisible(true);
     }
 
 }
