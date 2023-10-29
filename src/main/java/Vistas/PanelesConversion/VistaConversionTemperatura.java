@@ -6,6 +6,7 @@ package Vistas.PanelesConversion;
 
 import Clases.Filtro.NumerosDocumentFilter;
 import Controllers.TemperaturaController;
+import Vistas.Componentes.Footer;
 import Vistas.Contenedores.ConversionTemperaturaFrame;
 import Vistas.Contenedores.Menu;
 import java.awt.Image;
@@ -222,6 +223,10 @@ public class VistaConversionTemperatura extends javax.swing.JPanel {
 
         AbstractDocument doc = (AbstractDocument) txtTemperaura.getDocument();
         doc.setDocumentFilter(new NumerosDocumentFilter());
+        
+        Footer linkLabel = new Footer("Visita mi sitio web, ¡Haz Click!");       
+        linkLabel.setBounds(0, 530, 500, 30);
+        this.add(linkLabel);
     }
 
     public void setImageLabel(JLabel labelName, String root) {

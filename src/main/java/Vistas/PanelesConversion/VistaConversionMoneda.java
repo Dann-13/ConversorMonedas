@@ -7,6 +7,7 @@ package Vistas.PanelesConversion;
 import Model.CurrencyConverter;
 import Clases.Filtro.NumerosDocumentFilter;
 import Controllers.CurrencyConverterController;
+import Vistas.Componentes.Footer;
 import Vistas.Contenedores.ConversionTemperaturaFrame;
 import Vistas.Contenedores.ConversorMonedasFrame;
 import Vistas.Contenedores.Menu;
@@ -210,6 +211,10 @@ public class VistaConversionMoneda extends javax.swing.JPanel {
 
         DefaultComboBoxModel<String> targetCurrencyModel = new DefaultComboBoxModel<>(currencies);
         targetCurrencyComboBox.setModel(targetCurrencyModel);
+        
+        Footer linkLabel = new Footer("Visita mi sitio web, ¡Haz Click!");       
+        linkLabel.setBounds(0, 530, 500, 30);
+        this.add(linkLabel);
 
     }
 
